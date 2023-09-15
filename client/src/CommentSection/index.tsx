@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import CommentForm from "./CommentForm";
 import CommentList from "./CommentList";
 
-const CommentSection = ({ postId }) => {
+const CommentSection = ({ comments, postId }) => {
   return (
     <div>
       <CommentForm postId={postId} />
-      <CommentList postId={postId} />
+      <CommentList comments={comments} />
     </div>
   );
 };

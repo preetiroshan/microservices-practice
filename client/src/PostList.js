@@ -5,8 +5,9 @@ import CommentSection from "./CommentSection/index.tsx";
 const PostList = () => {
   const [posts, setPosts] = useState({});
   const fetchPosts = async () => {
-    let res = await axios.get("http://localhost:4000/posts");
-    setPosts(res.data);
+    // Calling queryservice to get allPostsWithComments
+    let allPostsWithComments = await axios.get("http://localhost:4002/posts");
+    setPosts(allPostsWithComments.data);
   };
   console.log("posts are", posts);
 
@@ -21,7 +22,7 @@ const PostList = () => {
         <div key={postId} className="border border-secondary">
           <h2>{posts[postId].title}</h2>
           <div className="border border-secondary">
-            <CommentSection postId={postId} />
+            <CommentSection postId={postId} comments={posts[postId].comments} />
           </div>
         </div>
       ))}

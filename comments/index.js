@@ -28,7 +28,7 @@ app.post("/posts/:id/comments", async (req, res) => {
   await axios.post("http://localhost:4004/events", {
     type: "CommentCreated",
     data: {
-      id, // This is comment id
+      id: newComment.id, // This is comment id
       content,
       postId: id,
     },

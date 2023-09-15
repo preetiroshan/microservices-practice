@@ -13,6 +13,7 @@ app.post("/events", async (req, res) => {
   // Share event with post and comment service
   await axios.post("http://localhost:4000/events", req.body);
   await axios.post("http://localhost:4001/events", req.body);
+  await axios.post("http://localhost:4002/events", req.body);
   res.send({});
 });
 

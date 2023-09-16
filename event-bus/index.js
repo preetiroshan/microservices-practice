@@ -14,6 +14,7 @@ app.post("/events", async (req, res) => {
   await axios.post("http://localhost:4000/events", req.body);
   await axios.post("http://localhost:4001/events", req.body);
   await axios.post("http://localhost:4002/events", req.body);
+  await axios.post("http://localhost:4003/events", req.body);
   res.send({});
 });
 

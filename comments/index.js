@@ -18,19 +18,24 @@ app.get("/posts/:id/comments", (req, res) => {
 app.post("/posts/:id/comments", async (req, res) => {
   const { content } = req.body;
   const id = req.params.id;
+  const commentId = randomBytes(4).toString("hex");
+  const status = "pending";
   const newComment = {
-    id: randomBytes(4).toString("hex"),
+    id: commentId,
     content,
+    status, //Adding default pending status on comment creation
   };
   const commentsForPost = commentsByPostId[id] || [];
   commentsForPost.push(newComment);
   commentsByPostId[id] = commentsForPost;
+
   await axios.post("http://localhost:4004/events", {
     type: "CommentCreated",
     data: {
-      id: newComment.id, // This is comment id
+      id: commentId, // This is comment id
       content,
       postId: id,
+      status,
     },
   });
   res.status(201).send({

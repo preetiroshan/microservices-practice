@@ -1,15 +1,25 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const CommentList = ({ comments }) => {
   console.log("comment list is", comments);
-  return <div>CommentList
-    {
-      comments.map((comment) => (
-        <p key={comment.id}>{comment.content}</p>
-      ))
+  const handleCommentStatus = (comment) => {
+    switch (comment.status) {
+      case "pending":
+        return "This comment is awaiting confirmation";
+      case "approved":
+        return comment.content;
+      case "rejected":
+        return "This comment was rejected";
     }
-  </div>;
+  };
+  return (
+    <div>
+      CommentList
+      {comments.map((comment) => (
+        <p key={comment.id}>{handleCommentStatus(comment)}</p>
+      ))}
+    </div>
+  );
 };
 
 export default CommentList;

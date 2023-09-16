@@ -38,10 +38,11 @@ app.post("/events", async (req, res) => {
       comments: [],
     };
   } else if (type === "CommentCreated") {
-    const { id, content, postId } = data;
+    const { id, content, postId, status } = data;
     allPostsWithComments[postId].comments.push({
       id,
       content,
+      status,
     });
   }
   res.send({});

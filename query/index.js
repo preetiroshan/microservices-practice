@@ -13,7 +13,8 @@ app.use(cors());
 //     comments: [
 //       {
 //         id: "commentId",
-//         content
+//         content,
+//         status;
 //       }
 //     ]
 //   }
@@ -44,6 +45,17 @@ app.post("/events", async (req, res) => {
       content,
       status,
     });
+  } else if (type === "CommentUpdated") {
+    const { id, content, postId, status } = data;
+    // Find comment and update it as it is
+    const commentToUpdate = allPostsWithComments[postId].comments.find(
+      (comment) => {
+        return comment.id === id;
+      }
+    );
+    // We copy all the required properties, and not just status or content
+    commentToUpdate.status = status;
+    commentToUpdate.content = content;
   }
   res.send({});
 });

@@ -24,13 +24,17 @@ app.post("/posts", async (req, res) => {
     id,
     title,
   };
-  await axios.post("http://localhost:4004/events", {
-    type: "PostCreated",
-    data: {
-      id,
-      title,
-    },
-  });
+  await axios
+    .post("http://localhost:4004/events", {
+      type: "PostCreated",
+      data: {
+        id,
+        title,
+      },
+    })
+    .catch((err) => {
+      console.log("error while posting comment", err);
+    });
   res.send(posts[id]);
 });
 

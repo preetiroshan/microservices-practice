@@ -2,19 +2,21 @@ import axios from "axios";
 import React, { useState } from "react";
 
 const CommentForm = ({ postId }) => {
-  const [text, setText] = useState("")
+  const [text, setText] = useState("");
   const handleChange = (e) => {
-    setText(e.target.value)
-  }
-  const onSubmit = async(e) => {
-    e.preventDefault()
-    await axios.post(
-      `http://localhost:4001/posts/${postId}/comments`, {
-        content: text
-      }
-    );
-    setText('')
-  }
+    setText(e.target.value);
+  };
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    await axios
+      .post(`http://localhost:4001/posts/${postId}/comments`, {
+        content: text,
+      })
+      .catch((err) => {
+        console.log("error while posting comment", err);
+      });
+    setText("");
+  };
 
   return (
     <div>

@@ -5,9 +5,13 @@ const PostForm = () => {
   const [val, setVal] = useState("");
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:4000/posts", {
-      title: val,
-    });
+    await axios
+      .post("http://localhost:4000/posts", {
+        title: val,
+      })
+      .catch((err) => {
+        console.log("error while making a post", err);
+      });
     setVal("");
   };
   return (

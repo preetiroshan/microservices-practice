@@ -11,9 +11,18 @@ app.use(cors());
 app.post("/events", async (req, res) => {
   console.log("Event Received in EventBus", req.body);
   // Share event with post and comment service
-  await axios.post("http://localhost:4000/events", req.body);
-  await axios.post("http://localhost:4001/events", req.body);
-  await axios.post("http://localhost:4002/events", req.body);
+  await axios.post("http://localhost:4000/events", req.body).catch((err) => {
+    console.log("err", err);
+  });
+  await axios.post("http://localhost:4001/events", req.body).catch((err) => {
+    console.log("err", err);
+  });
+  await axios.post("http://localhost:4002/events", req.body).catch((err) => {
+    console.log("err", err);
+  });
+  await axios.post("http://localhost:4003/events", req.body).catch((err) => {
+    console.log("err", err);
+  });
   res.send({});
 });
 

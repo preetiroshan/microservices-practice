@@ -6,8 +6,12 @@ const PostList = () => {
   const [posts, setPosts] = useState({});
   const fetchPosts = async () => {
     // Calling queryservice to get allPostsWithComments
-    let allPostsWithComments = await axios.get("http://localhost:4002/posts");
-    setPosts(allPostsWithComments.data);
+    let allPostsWithComments = await axios
+      .get("http://localhost:4002/posts")
+      .catch((err) => {
+        console.log("error while fetching post with details", err);
+      });
+    allPostsWithComments && setPosts(allPostsWithComments.data);
   };
   console.log("posts are", posts);
 

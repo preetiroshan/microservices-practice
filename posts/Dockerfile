@@ -1,5 +1,7 @@
 FROM node:18-alpine3.17
 
+# TODO - check node modules exclusion for fresh builds
+
 WORKDIR /app
 COPY ./package.json ./
 RUN npm install

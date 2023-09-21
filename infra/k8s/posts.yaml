@@ -1,0 +1,16 @@
+apiVersion: v1
+
+# ttype of object
+kind: Pod
+
+# object property
+metadata:
+  # name - o/p in k get pods
+  name: posts
+spec:
+  containers: 
+    # Here - means an array
+    - name: posts
+    # image name
+    # putting an exact version to avoid default (latest) version getting picked in which case docker pulls the image from dockerhub
+      image: preetir31/firstpod:0.0.1

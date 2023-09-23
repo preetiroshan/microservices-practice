@@ -1,0 +1,29 @@
+# 
+apiVersion: apps/v1
+
+# ttype of object
+kind: Deployment
+
+# object property
+metadata:
+  name: posts-depl
+spec:
+  # no. of pods running an image
+  replicas: 1
+  selector:
+    matchLabels:
+      app: posts
+  # config of pod created by deployment
+  template:
+    metadata:
+      labels:
+        app: posts
+      # spec is like config fle for a pod
+    spec:
+      containers: 
+        # Here - means an array
+        - name: posts
+        # image name
+        # putting an exact version to avoid default (latest) version getting picked in which case docker pulls the image from dockerhub
+          image: preetir31/firstpod:0.0.1
+  

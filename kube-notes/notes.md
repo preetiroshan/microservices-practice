@@ -26,3 +26,13 @@ deleting deployment pod automatically creates a new pod
 - kubectl apply -f configfileName - create a deployment from a config file
 
 - kubectl delete deployment depname - deletes all pods as well
+
+# Update a deployment
+1. Method 1
+- Make code change, rebuild the image with new image version specified
+- Update the new image version in config file
+- kubectl command will print "configured" and not "created" as it identifies that the config file has been used and is updated.
+No new object is created in this case
+
+![Alt text](image-5.png)
+![Alt text](image-6.png)

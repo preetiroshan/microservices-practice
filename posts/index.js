@@ -44,5 +44,6 @@ app.post("/events", async (req, res) => {
 });
 
 app.listen(4000, () => {
+  console.log("new version"); // temp log for checking deployment updation
   console.log(`Example app listening on port 4000`);
 });
